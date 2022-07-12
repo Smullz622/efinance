@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     public boolean validate(Employee emp1) {
         for (Employee e : this.employeeRepository.findAll()) {
-            if (emp1.getEmail().equals(e.getEmail()) && (emp1.getPassword().equals(e.getPassword()))) {
+            if (emp1.getEmpEmail().equals(e.getEmpEmail()) && emp1.getEmpNum().equals(e.getEmpNum()) && (emp1.getEmpPassword().equals(e.getEmpPassword()))) {
                 return true;
             }
         } return false;

@@ -1,6 +1,7 @@
 package com.example.ist412group4.model;
 
 public class UserFactory {
+  /*
     public User getUser(String userType) {
         if (userType == null) {
             return null;
@@ -11,4 +12,5 @@ public class UserFactory {
         }
         return null;
     }
+   */
 }
