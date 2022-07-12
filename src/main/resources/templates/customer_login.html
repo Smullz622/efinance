@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>eFinance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+<h1> Login </h1>
+
+<p>Welcome to eFinance! Please enter your username and password to log in.</p>
+
+<form action="#" th:action="@{/customerMenu}" th:object="${user}" method="POST">
+
+    <input type="text" th:field="*{email}
+           placeholder="Email" class="form-control mb-4 col-4">
+
+    <input type="text" th:field="*{password}
+           placeholder="Password" class="form-control mb-4 col-4">
+
+    <button type="submit" class="btn btn-info col-2"> Login </button>
+</form>
+
+<div class="container my-2">
+    <br/>
+    <a th:href="@{/mainMenu}" class="btn btn-primary"> Login </a>
+    <a th:href="@{/showNewUserForm}" class="btn btn-primary"> Create Account </a>
+    <br/>
+</div>
+</body>
+
+</html>
