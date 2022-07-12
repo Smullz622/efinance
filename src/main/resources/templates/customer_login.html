@@ -10,22 +10,21 @@
 <h1> Login </h1>
 
 <p>Welcome to eFinance! Please enter your username and password to log in.</p>
+<div class="container">
+<form action="#" th:action="@{/validateCustomerLogin}" th:object="${customer}" method="GET">
 
-<form action="#" th:action="@{/customerMenu}" th:object="${user}" method="POST">
-
-    <input type="text" th:field="*{email}
+    <input type="text" th:field="*{custEmail}"
            placeholder="Email" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{password}
+    <input type="text" th:field="*{custPassword}"
            placeholder="Password" class="form-control mb-4 col-4">
 
     <button type="submit" class="btn btn-info col-2"> Login </button>
 </form>
-
+</div>
 <div class="container my-2">
     <br/>
-    <a th:href="@{/mainMenu}" class="btn btn-primary"> Login </a>
-    <a th:href="@{/showNewUserForm}" class="btn btn-primary"> Create Account </a>
+    <a th:href="@{/showNewCustomerForm}" class="btn btn-primary"> Create Account </a>
     <br/>
 </div>
 </body>

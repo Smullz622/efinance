@@ -5,24 +5,55 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends User implements Serializable {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "cust_name")
-    private String name;
+    private String custName;
     @Column(name = "cust_email")
-    private String email;
+    private String custEmail;
     @Column(name = "cust_password")
-    private String password;
+    private String custPassword;
 
-    @Override
     public boolean authenticate() {
-        if (name.isBlank() || email.isBlank() || password.isBlank()) {
+        if (custName.isBlank() || custEmail.isBlank() || custPassword.isBlank()) {
             return false;
         }else {
             return true;
         }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getCustEmail() {
+        return custEmail;
+    }
+
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
+    }
+
+    public String getCustPassword() {
+        return custPassword;
+    }
+
+    public void setCustPassword(String custPassword) {
+        this.custPassword = custPassword;
     }
 }

@@ -7,27 +7,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 </head>
 <body>
+<div class="container">
 <h1> Login </h1>
 
 <p>Welcome to eFinance! Please enter your username, password, and employee number to log in.</p>
 
-<form action="#" th:action="@{/validateEmployee}" th:object="${employee}" method="POST">
+<form action="#" th:action="@{/validateEmployeeLogin}" th:object="${employee}"
+      method="GET">
 
-    <p>Email</p>
-    <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{empEmail}"
+           placeholder="Email" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{password}"
+    <input type="text" th:field="*{empPassword}"
            placeholder="Password" class="form-control mb-4 col-4">
     <input type="text" th:field="*{empNum}"
            placeholder="Employee Number" class="form-control mb-4 col-4">
 
     <button type="submit" class="btn btn-info col-2"> Login </button>
 </form>
-
+</div>
 <div class="container my-2">
     <br/>
-    <a th:href="@{/employeeMenu}" class="btn btn-primary"> Login </a>
-    <a th:href="@{/showNewUserForm}" class="btn btn-primary"> Create Account </a>
+    <a th:href="@{/showNewEmployeeForm}" class="btn btn-primary"> Create Account </a>
     <br/>
 </div>
 </body>

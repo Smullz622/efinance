@@ -5,25 +5,24 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "employee")
-public class Employee extends User implements Serializable {
+public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "emp_name")
-    private String name;
+    private String empName;
     @Column(name = "emp_email")
-    private String email;
+    private String empEmail;
     @Column(name = "emp_password")
-    private String password;
+    private String empPassword;
     @Column(name = "emp_num")
     private String empNum;
 
-    @Override
     public boolean authenticate(){
-        if ((empNum.length() != 5) || name.isBlank()|| email.isBlank()|| password.isBlank()) {
-            return true;
-        }else {
+        if ((empNum.length() != 5) || empName.isBlank()|| empEmail.isBlank()|| empPassword.isBlank()) {
             return false;
+        }else {
+            return true;
         }
     }
 
@@ -35,28 +34,28 @@ public class Employee extends User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmpEmail() {
+        return empEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmpEmail(String empEmail) {
+        this.empEmail = empEmail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmpPassword() {
+        return empPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmpPassword(String empPassword) {
+        this.empPassword = empPassword;
     }
 
     public String getEmpNum() {
