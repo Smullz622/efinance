@@ -1,7 +1,11 @@
 package com.example.ist412group4.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -16,6 +20,10 @@ public class Customer implements Serializable {
     private String custEmail;
     @Column(name = "cust_password")
     private String custPassword;
+
+    @ManyToMany(mappedBy = "customer")
+    @JsonIgnore
+    private Set<LoanApplication> loanApplicationSet = new HashSet<>();
 
     public boolean authenticate() {
         if (custName.isBlank() || custEmail.isBlank() || custPassword.isBlank()) {
@@ -55,5 +63,13 @@ public class Customer implements Serializable {
 
     public void setCustPassword(String custPassword) {
         this.custPassword = custPassword;
+    }
+
+    public Set<LoanApplication> getLoans() {
+        return loanApplicationSet;
+    }
+
+    public void setLoanApplicationSet(Set<LoanApplication> loanApplicationSet) {
+        this.loanApplicationSet = loanApplicationSet;
     }
 }

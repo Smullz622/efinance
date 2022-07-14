@@ -99,4 +99,9 @@ public class LoginController {
         }
         return "new_employee";
     }
+
+    @GetMapping("/showNewApplicationForm")
+    public String showNewApplicationForm(){
+        return "loan_application";
+    }
 }

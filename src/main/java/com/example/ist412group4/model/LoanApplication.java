@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "loanApplication")
@@ -29,6 +31,21 @@ public class LoanApplication implements Serializable {
     @Column(name = "Amount of Loan")
     private BigDecimal loanAmount;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+
+    @JoinTable(name = "customer_loanApplication",
+            joinColumns = {@JoinColumn(name = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "applicationNo")})
+
+    public Set<Customer> customers = new HashSet<>();
+
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
+    }
 
     public long getApplicationNo() { return applicationNo; }
 
