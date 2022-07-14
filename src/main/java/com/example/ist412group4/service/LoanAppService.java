@@ -11,5 +11,6 @@ public interface LoanAppService {
     LoanApplication getLoanApplicationById(long id);
     void deleteLoanApplicationById(long id);
 
+    boolean validateApplication(LoanApplication loanApplication);
     Page<LoanApplication> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

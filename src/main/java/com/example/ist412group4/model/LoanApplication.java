@@ -28,7 +28,7 @@ public class LoanApplication implements Serializable {
     @Column(name = "gross_monthly_income")
     private String income;
     @Column(name = "amount_of_loan")
-    private BigDecimal loanAmount;
+    private String loanAmount;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "application_customer",
@@ -36,7 +36,7 @@ public class LoanApplication implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "id")})
 
     public Set<Customer> customers = new HashSet<>();
-/*
+
     public Set<Customer> getCustomers() {
         return customers;
     }
@@ -44,8 +44,6 @@ public class LoanApplication implements Serializable {
     public void setCustomers(Set<Customer> customers) {
         this.customers = customers;
     }
-
- */
 
     public long getApplicationNo() { return aid; }
 
@@ -95,7 +93,7 @@ public class LoanApplication implements Serializable {
         return birthDay;
     }
 
-    public void setBirthDay(String bDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -107,11 +105,11 @@ public class LoanApplication implements Serializable {
         this.income = income;
     }
 
-    public BigDecimal getLoanAmount() {
+    public String getLoanAmount() {
         return loanAmount;
     }
 
-    public void setLoanAmount(BigDecimal loanAmount) {
+    public void setLoanAmount(String loanAmount) {
         this.loanAmount = loanAmount;
     }
 

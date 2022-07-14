@@ -46,14 +46,13 @@ public class LoginController {
         if (employeeService.validate(employee)==true){
             return "employee_menu";
         } else {
-            return "redirect:/";
+            return "employee_login_error";
         }
     }
 
     @GetMapping("/employeeMenu")
     public String viewEmployeeMenu(Model model){
        return "employee_menu";
-        //if user type == employee, call authenticate then return "employee_menu"
     }
 
     @GetMapping("/showCustomerLogin")
@@ -74,7 +73,7 @@ public class LoginController {
         if (customerService.validate(customer)==true){
             return "customer_menu";
         } else {
-            return "redirect:/";
+            return "customer_login_error";
         }
     }
     @GetMapping("/customerMenu")
@@ -88,7 +87,7 @@ public class LoginController {
             customerService.saveCustomer(customer);
             return "redirect:/showCustomerLogin";
         }
-        return "new_customer";
+        return "new_customer_error";
     }
 
     @PostMapping("/saveEmployee")
@@ -97,7 +96,7 @@ public class LoginController {
             employeeService.saveEmployee(employee);
             return "redirect:/showEmployeeLogin";
         }
-        return "new_employee";
+        return "new_employee_error";
     }
 
 }

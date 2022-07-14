@@ -40,6 +40,17 @@ public class LoanAppServiceImpl implements LoanAppService{
     public void deleteLoanApplicationById(long id) { this.loanAppRepository.deleteById(id);}
 
     @Override
+    public boolean validateApplication(LoanApplication loanApplication) {
+        if (loanApplication.getName().isBlank() || loanApplication.getAddress().isBlank() || (loanApplication.getLoanAmount().isBlank())
+         || loanApplication.getPhoneNo().isBlank() || loanApplication.getSocial().isBlank() ||
+        loanApplication.getBirthDay().isBlank() || loanApplication.getIncome().isBlank()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
     public Page<LoanApplication> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();

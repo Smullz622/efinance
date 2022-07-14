@@ -31,8 +31,13 @@ public class LoanApplicationController {
 
     @PostMapping("/saveLoanApplication")
     public String saveLoanApplication(@ModelAttribute("application") LoanApplication loanApplication){
-        loanAppService.saveLoanApplication(loanApplication);
-        return "/customer_menu";
+        if (loanAppService.validateApplication(loanApplication)) {
+            loanAppService.saveLoanApplication(loanApplication);
+            return "/application_confirmation";
+        } else {
+            return "/application_error";
+        }
+
     }
 
 }
