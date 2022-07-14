@@ -3,42 +3,40 @@ package com.example.ist412group4.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "loanApplication")
+@Table(name = "application")
 public class LoanApplication implements Serializable {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long applicationNo;
-    @Column(name = "Applicant Name")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long aid;
+    @Column(name = "applicant_name")
     private String name;
-    @Column(name = "Address")
+    @Column(name = "address")
     private String address;
-    @Column(name = "Phone Number")
+    @Column(name = "phone_number")
     private String phoneNo;
-    @Column(name = "Social Security Number")
+    @Column(name = "social_security_number")
     private String social;
-    @Column(name = "Type of Loan")
+    @Column(name = "type_of_loan")
     private String loanType;
-    @Column(name = "Date of Birth")
+    @Column(name = "date_of_birth")
     private String birthDay;
-    @Column(name = "Gross Monthly Income")
+    @Column(name = "gross_monthly_income")
     private long income;
-    @Column(name = "Amount of Loan")
+    @Column(name = "amount_of_loan")
     private BigDecimal loanAmount;
 
     @ManyToMany(cascade = CascadeType.MERGE)
-
-    @JoinTable(name = "customer_loanApplication",
-            joinColumns = {@JoinColumn(name = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "applicationNo")})
+    @JoinTable(name = "application_customer",
+            joinColumns = {@JoinColumn(name = "aid")},
+            inverseJoinColumns = {@JoinColumn(name = "id")})
 
     public Set<Customer> customers = new HashSet<>();
-
+/*
     public Set<Customer> getCustomers() {
         return customers;
     }
@@ -47,9 +45,11 @@ public class LoanApplication implements Serializable {
         this.customers = customers;
     }
 
-    public long getApplicationNo() { return applicationNo; }
+ */
 
-    public void setApplicationNo(long applicationNo) { this.applicationNo = applicationNo; }
+    public long getApplicationNo() { return aid; }
+
+    public void setApplicationNo(long aid) { this.aid = aid; }
 
     public String getName() {
         return name;

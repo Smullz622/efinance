@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer implements Serializable {
 
     @Id
@@ -21,9 +21,9 @@ public class Customer implements Serializable {
     @Column(name = "cust_password")
     private String custPassword;
 
-    @ManyToMany(mappedBy = "customer")
+    @ManyToMany(mappedBy = "customers")
     @JsonIgnore
-    private Set<LoanApplication> loanApplicationSet = new HashSet<>();
+    private Set<LoanApplication> loanApplications = new HashSet<>();
 
     public boolean authenticate() {
         if (custName.isBlank() || custEmail.isBlank() || custPassword.isBlank()) {
@@ -65,11 +65,5 @@ public class Customer implements Serializable {
         this.custPassword = custPassword;
     }
 
-    public Set<LoanApplication> getLoans() {
-        return loanApplicationSet;
-    }
 
-    public void setLoanApplicationSet(Set<LoanApplication> loanApplicationSet) {
-        this.loanApplicationSet = loanApplicationSet;
-    }
 }
