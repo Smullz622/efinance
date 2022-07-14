@@ -3,6 +3,8 @@ package com.example.ist412group4.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "loanApplication")
@@ -27,7 +29,16 @@ public class LoanApplication implements Serializable {
     @Column(name = "Amount of Loan")
     private BigDecimal loanAmount;
 
+    /*List<String> loanTypeList = new ArrayList<>();
+    loanTypeList.add("Auto");
 
+    public List<String> getLoanTypeList() {
+        return loanTypeList;
+    }
+
+    public void setLoanTypeList(List<String> loanTypeList) {
+        this.loanTypeList = loanTypeList;
+    }*/
 
     public long getApplicationNo() { return applicationNo; }
 
