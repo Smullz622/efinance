@@ -29,16 +29,6 @@ public class LoanApplication implements Serializable {
     @Column(name = "Amount of Loan")
     private BigDecimal loanAmount;
 
-    /*List<String> loanTypeList = new ArrayList<>();
-    loanTypeList.add("Auto");
-
-    public List<String> getLoanTypeList() {
-        return loanTypeList;
-    }
-
-    public void setLoanTypeList(List<String> loanTypeList) {
-        this.loanTypeList = loanTypeList;
-    }*/
 
     public long getApplicationNo() { return applicationNo; }
 
