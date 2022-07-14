@@ -26,7 +26,7 @@ public class LoanApplication implements Serializable {
     @Column(name = "date_of_birth")
     private String birthDay;
     @Column(name = "gross_monthly_income")
-    private long income;
+    private String income;
     @Column(name = "amount_of_loan")
     private BigDecimal loanAmount;
 
@@ -99,11 +99,11 @@ public class LoanApplication implements Serializable {
         this.birthDay = birthDay;
     }
 
-    public long getIncome() {
+    public String getIncome() {
         return income;
     }
 
-    public void setIncome(long income) {
+    public void setIncome(String income) {
         this.income = income;
     }
 
