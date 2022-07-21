@@ -8,27 +8,28 @@
 </head>
 <body>
 <div class="container">
-<h1> Login </h1>
+    <h1> Login </h1>
 
-<p>Welcome to eFinance! Please enter your username, password, and employee number to log in.</p>
+    <p>Welcome to eFinance! Please enter your username, password, and employee number to log in.</p>
 
-<form action="#" th:action="@{/validateEmployeeLogin}" th:object="${employee}"
-      method="GET">
+    <form action="#" th:action="@{/validateEmployeeLogin}" th:object="${employee}"
+          method="GET">
 
-    <input type="text" th:field="*{empEmail}"
-           placeholder="Email" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{empEmail}"
+               placeholder="Email" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{empPassword}"
-           placeholder="Password" class="form-control mb-4 col-4">
-    <input type="text" th:field="*{empNum}"
-           placeholder="Employee Number" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{empPassword}"
+               placeholder="Password" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{empNum}"
+               placeholder="Employee Number" class="form-control mb-4 col-4">
 
-    <button type="submit" class="btn btn-info col-2"> Login </button>
-</form>
+        <button type="submit" class="btn btn-info col-2"> Login </button>
+    </form>
 </div>
 <div class="container my-2">
     <br/>
     <a th:href="@{/showNewEmployeeForm}" class="btn btn-primary"> Create Account </a>
+    <a th:href="@{/findEmployeePassword}" class="btn btn-primary"> Find Password </a>
     <br/>
 </div>
 </body>

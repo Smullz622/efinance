@@ -8,24 +8,25 @@
 </head>
 <body>
 <div class="container">
-<h1> Login </h1>
+    <h1> Login </h1>
 
-<p>Welcome to eFinance! Please enter your username and password to log in.</p>
+    <p>Welcome to eFinance! Please enter your username and password to log in.</p>
 
-<form action="#" th:action="@{/validateCustomerLogin}" th:object="${customer}" method="GET">
+    <form action="#" th:action="@{/validateCustomerLogin}" th:object="${customer}" method="GET">
 
-    <input type="text" th:field="*{custEmail}"
-           placeholder="Email" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{custEmail}"
+               placeholder="Email" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{custPassword}"
-           placeholder="Password" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{custPassword}"
+               placeholder="Password" class="form-control mb-4 col-4">
 
-    <button type="submit" class="btn btn-info col-2"> Login </button>
-</form>
+        <button type="submit" class="btn btn-info col-2"> Login </button>
+    </form>
 </div>
 <div class="container my-2">
     <br/>
     <a th:href="@{/showNewCustomerForm}" class="btn btn-primary"> Create Account </a>
+    <a th:href="@{/findCustomerPassword}" class="btn btn-primary"> Find Password </a>
     <br/>
 </div>
 </body>

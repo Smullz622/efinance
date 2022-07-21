@@ -99,4 +99,16 @@ public class LoginController {
         return "new_employee_error";
     }
 
+    @GetMapping("/findEmployeePassword")
+    public String findEmployeePassword(Model model)
+    {
+        return "employee_find_password";
+    }
+
+    @GetMapping("/findCustomerPassword")
+    public String findCustomerPassword(Model model)
+    {
+        return "customer_find_password";
+    }
+
 }
