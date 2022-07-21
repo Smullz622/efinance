@@ -102,12 +102,14 @@ public class LoginController {
     @GetMapping("/findEmployeePassword")
     public String findEmployeePassword(Model model)
     {
+        String email;
         return "employee_find_password";
     }
 
     @GetMapping("/findCustomerPassword")
     public String findCustomerPassword(Model model)
     {
+        String email;
         return "customer_find_password";
     }
 
