@@ -1,9 +1,7 @@
 package com.example.ist412group4.controller;
 
 
-import com.example.ist412group4.model.Employee;
 import com.example.ist412group4.model.LoanApplication;
-import com.example.ist412group4.model.Customer;
 import com.example.ist412group4.service.LoanAppService;
 import com.example.ist412group4.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
