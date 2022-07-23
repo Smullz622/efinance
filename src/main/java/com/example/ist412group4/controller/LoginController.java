@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class LoginController {
@@ -99,18 +101,38 @@ public class LoginController {
         return "new_employee_error";
     }
 
+    private long result = 1;
+
     @GetMapping("/findEmployeePassword")
-    public String findEmployeePassword(Model model)
+    public String findEmployeePassword(@ModelAttribute("employee") Employee employee)
     {
-        String email;
+        long id = employee.getId();
+        result = (id == 0) ? 1 : id;
+        Employee test = employeeService.getEmployeeById(result);
         return "employee_find_password";
     }
 
     @GetMapping("/findCustomerPassword")
-    public String findCustomerPassword(Model model)
+    public String findCustomerPassword(@ModelAttribute("customer") Customer customer)
     {
-        String email;
+        long id = customer.getId();
+        result = (id == 0) ? 1 : id;
+        Customer test = customerService.getCustomerById(result);
         return "customer_find_password";
+    }
+
+    @GetMapping("/employeePasswordResult")
+    public String employeePasswordResult(@ModelAttribute("employee") Employee employee)
+    {
+        this.employeeService.getEmployeeById(result);
+
+        return "employee_password_result";
+    }
+
+    @GetMapping("/customerPasswordResult")
+    public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
+        this.customerService.getCustomerById(result);
+        return "customer_password_result";
     }
 
 }
