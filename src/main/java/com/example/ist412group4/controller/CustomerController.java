@@ -34,7 +34,7 @@ public class CustomerController {
         if (customerService.validate(customer)==true){
             return "customer_menu";
         } else {
-            return "customer_login_error";
+            return "account_not_found_error";
         }
     }
     @GetMapping("/customerMenu")

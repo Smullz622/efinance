@@ -42,7 +42,7 @@ public class EmployeeController {
         if (employeeService.validate(employee)==true){
             return "employee_menu";
         } else {
-            return "employee_login_error";
+            return "account_not_found_error";
         }
     }
 
