@@ -2,9 +2,7 @@ package com.example.ist412group4.service;
 
 import java.util.List;
 import java.util.Optional;
-import com.example.ist412group4.model.Customer;
 import com.example.ist412group4.model.Employee;
-import com.example.ist412group4.repository.CustomerRepository;
 import com.example.ist412group4.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
