@@ -135,4 +135,9 @@ public class LoginController {
         return "customer_password_result";
     }
 
+    @GetMapping("/logout")
+    public String logout(Model model) {
+        return "redirect:/";
+    }
+
 }
