@@ -71,27 +71,11 @@ public class EmployeeController {
         return "employee_find_password";
     }
 
-    @GetMapping("/findCustomerPassword")
-    public String findCustomerPassword(@ModelAttribute("customer") Customer customer)
-    {
-        long id = customer.getId();
-        result = (id == 0) ? 1 : id;
-        Customer test = customerService.getCustomerById(result);
-        return "customer_find_password";
-    }
-
     @GetMapping("/employeePasswordResult")
     public String employeePasswordResult(@ModelAttribute("employee") Employee employee)
     {
         this.employeeService.getEmployeeById(result);
-
         return "employee_password_result";
-    }
-
-    @GetMapping("/customerPasswordResult")
-    public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
-        this.customerService.getCustomerById(result);
-        return "customer_password_result";
     }
 
     @GetMapping("/logout")

@@ -50,6 +50,25 @@ public class CustomerController {
         }
         return "new_customer_error";
     }
+    private long result = 1;
+    @GetMapping("/findCustomerPassword")
+    public String findCustomerPassword(@ModelAttribute("customer") Customer customer)
+    {
+        for (Customer c : customerService.getAllCustomers()) {
+            if (customer.getCustEmail().equals(c.getCustEmail())) {
+                long id = customer.getId();
+                result = (id == 0) ? 1 : id;
+                System.out.println("Result: " + result);
+                return "customer_find_password";
+            }
+        }
+        return "account_not_found_error";
+    }
+    @GetMapping("/customerPasswordResult")
+    public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
+        this.customerService.getCustomerById(result);
+        return "customer_password_result";
+    }
 
 }
 
