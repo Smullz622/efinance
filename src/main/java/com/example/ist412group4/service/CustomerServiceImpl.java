@@ -39,6 +39,18 @@ public class CustomerServiceImpl implements CustomerService{
     public void deleteCustomerById(long id) {
         this.customerRepository.deleteById(id);
     }
+
+    @Override
+    public Customer getCustomerByLogin(Customer customer) {
+        Customer current_customer = new Customer();
+        for (Customer c : this.customerRepository.findAll()) {
+            if (customer.getCustEmail().equals(c.getCustEmail()) && (customer.getCustPassword().equals(c.getCustPassword()))) {
+                current_customer = c;
+            }
+        }
+        return current_customer;
+    }
+
     @Override
     public boolean validate(Customer cust1) {
         for (Customer c : this.customerRepository.findAll()) {
@@ -47,4 +59,5 @@ public class CustomerServiceImpl implements CustomerService{
             }
         } return false;
     }
+
 }

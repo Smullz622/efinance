@@ -9,6 +9,7 @@ public interface CustomerService {
     void saveCustomer(Customer customer);
     Customer getCustomerById(long id);
     void deleteCustomerById(long id);
+    Customer getCustomerByLogin(Customer customer);
 
     boolean validate(Customer customer);
 }
