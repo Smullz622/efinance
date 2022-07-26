@@ -27,28 +27,28 @@ public class EmployeeController {
     public String viewEmployeeLogin(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
-        return "employee_login";
+        return "employee/employee_login";
     }
 
     @GetMapping("/showNewEmployeeForm")
     public String showNewEmployeeForm(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
-        return "new_employee";
+        return "employee/new_employee";
     }
 
     @GetMapping("/validateEmployeeLogin")
     public String validateEmployeeLogin(@ModelAttribute("employee") Employee employee) {
         if (employeeService.validate(employee)==true){
-            return "employee_menu";
+            return "employee/employee_menu";
         } else {
-            return "account_not_found_error";
+            return "error_pages/account_not_found_error";
         }
     }
 
     @GetMapping("/employeeMenu")
     public String viewEmployeeMenu(Model model){
-        return "employee_menu";
+        return "employee/employee_menu";
     }
 
     @PostMapping("/saveEmployee")
@@ -57,7 +57,7 @@ public class EmployeeController {
             employeeService.saveEmployee(employee);
             return "redirect:/showEmployeeLogin";
         }
-        return "new_employee_error";
+        return "error_pages/new_employee_error";
     }
 
     private long result = 1;
@@ -68,14 +68,14 @@ public class EmployeeController {
         long id = employee.getId();
         result = (id == 0) ? 1 : id;
         Employee test = employeeService.getEmployeeById(result);
-        return "employee_find_password";
+        return "employee/employee_find_password";
     }
 
     @GetMapping("/employeePasswordResult")
     public String employeePasswordResult(@ModelAttribute("employee") Employee employee)
     {
         this.employeeService.getEmployeeById(result);
-        return "employee_password_result";
+        return "employee/employee_password_result";
     }
 
     @GetMapping("/logout")

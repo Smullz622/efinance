@@ -24,16 +24,16 @@ public class LoanApplicationController {
     public String showNewApplicationForm(Model model){
         LoanApplication loanApplication = new LoanApplication();
         model.addAttribute("application", loanApplication);
-        return "new_loan_application";
+        return "loan_application/new_loan_application";
     }
 
     @PostMapping("/saveLoanApplication")
     public String saveLoanApplication(@ModelAttribute("application") LoanApplication loanApplication){
         if (loanAppService.validateApplication(loanApplication)) {
             loanAppService.saveLoanApplication(loanApplication);
-            return "/application_confirmation";
+            return "loan_application/application_confirmation";
         } else {
-            return "/application_error";
+            return "error_pages/application_error";
         }
 
     }

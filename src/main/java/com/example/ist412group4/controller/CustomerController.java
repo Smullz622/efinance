@@ -20,26 +20,26 @@ public class CustomerController {
     public String viewCustomerLogin(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
-        return "customer_login";
+        return "customer/customer_login";
     }
     @GetMapping("/showNewCustomerForm")
     public String showNewCustomerForm(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
-        return "new_customer";
+        return "customer/new_customer";
     }
 
     @GetMapping("/validateCustomerLogin")
     public String validateCustomerLogin(@ModelAttribute("customer") Customer customer) {
         if (customerService.validate(customer)==true){
-            return "customer_menu";
+            return "customer/customer_menu";
         } else {
-            return "account_not_found_error";
+            return "error_pages/account_not_found_error";
         }
     }
     @GetMapping("/customerMenu")
     public String viewCustomerMenu(Model model) {
-        return "customer_menu";
+        return "customer/customer_menu";
     }
 
     @PostMapping("/saveCustomer")
@@ -48,7 +48,7 @@ public class CustomerController {
             customerService.saveCustomer(customer);
             return "redirect:/showCustomerLogin";
         }
-        return "new_customer_error";
+        return "error_pages/new_customer_error";
     }
     private long result = 1;
     @GetMapping("/findCustomerPassword")
@@ -59,15 +59,15 @@ public class CustomerController {
                 long id = customer.getId();
                 result = (id == 0) ? 1 : id;
                 System.out.println("Result: " + result);
-                return "customer_find_password";
+                return "customer/customer_find_password";
             }
         }
-        return "account_not_found_error";
+        return "error_pages/account_not_found_error";
     }
     @GetMapping("/customerPasswordResult")
     public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
         this.customerService.getCustomerById(result);
-        return "customer_password_result";
+        return "customer/customer_password_result";
     }
 
 }
