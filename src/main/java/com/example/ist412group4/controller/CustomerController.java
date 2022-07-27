@@ -57,24 +57,26 @@ public class CustomerController {
         }
         return "error_pages/new_customer_error";
     }
-    private long result = 1;
     @GetMapping("/findCustomerPassword")
     public String findCustomerPassword(@ModelAttribute("customer") Customer customer)
     {
+        return "customer/customer_find_password";
+    }
+    @GetMapping("/customerPasswordResult")
+    public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
         for (Customer c : customerService.getAllCustomers()) {
             if (customer.getCustEmail().equals(c.getCustEmail())) {
-                long id = customer.getId();
-                result = (id == 0) ? 1 : id;
-                System.out.println("Result: " + result);
-                return "customer/customer_find_password";
+                long id = c.getId();
+                return "redirect:/showCustomerPassword/" + String.valueOf(id);
             }
         }
         return "error_pages/account_not_found_error";
     }
-    @GetMapping("/customerPasswordResult")
-    public String customerPasswordResult(@ModelAttribute("customer") Customer customer) {
-        this.customerService.getCustomerById(result);
-        return "customer/customer_password_result";
+    @GetMapping("/showCustomerPassword/{id}")
+    public String showCustomerPassword(@PathVariable (value = "id") long id, Model model){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", customer);
+        return "customer/show_password";
     }
 
 }
