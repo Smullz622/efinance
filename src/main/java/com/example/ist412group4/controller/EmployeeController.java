@@ -1,5 +1,6 @@
 package com.example.ist412group4.controller;
 
+import com.example.ist412group4.model.Customer;
 import com.example.ist412group4.model.Employee;
 import com.example.ist412group4.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,23 +60,26 @@ public class EmployeeController {
         }
         return "error_pages/new_employee_error";
     }
-
-    private long result = 1;
-
     @GetMapping("/findEmployeePassword")
     public String findEmployeePassword(@ModelAttribute("employee") Employee employee)
     {
-        long id = employee.getId();
-        result = (id == 0) ? 1 : id;
-        Employee test = employeeService.getEmployeeById(result);
         return "employee/employee_find_password";
     }
-
     @GetMapping("/employeePasswordResult")
-    public String employeePasswordResult(@ModelAttribute("employee") Employee employee)
-    {
-        this.employeeService.getEmployeeById(result);
-        return "employee/employee_password_result";
+    public String customerEmployeeResult(@ModelAttribute("employee") Employee employee) {
+        for (Employee e : employeeService.getAllEmployees()) {
+            if (employee.getEmpEmail().equals(e.getEmpEmail())) {
+                long id = e.getId();
+                return "redirect:/showEmployeePassword/" + String.valueOf(id);
+            }
+        }
+        return "error_pages/account_not_found_error";
+    }
+    @GetMapping("/showEmployeePassword/{id}")
+    public String showEmployeePassword(@PathVariable (value = "id") long id, Model model){
+        Employee employee = employeeService.getEmployeeById(id);
+        model.addAttribute("employee", employee);
+        return "employee/show_password";
     }
 
     @GetMapping("/logout")

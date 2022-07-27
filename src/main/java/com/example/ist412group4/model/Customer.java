@@ -65,5 +65,14 @@ public class Customer implements Serializable {
         this.custPassword = custPassword;
     }
 
-
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", custName='" + custName + '\'' +
+                ", custEmail='" + custEmail + '\'' +
+                ", custPassword='" + custPassword + '\'' +
+                ", loanApplications=" + loanApplications +
+                '}';
+    }
 }
