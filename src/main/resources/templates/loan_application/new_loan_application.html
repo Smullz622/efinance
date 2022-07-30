@@ -50,9 +50,13 @@
 </div>
 </div>
 <div class="container my-2">
-    <br/>
-    <a th:href="@{/customerMenu}" class="btn btn-primary"> Cancel </a>
-    <br/>
+    <form action="#" th:action="@{/customerMenu/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
+
+        <input type="hidden" th:field="*{id}" />
+        <button type="submit" class="btn btn-info col-2"> Cancel </button>
+
+    </form>
+
 </div>
 </body>
 </html>
