@@ -2,7 +2,6 @@ package com.example.ist412group4.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +28,24 @@ public class LoanApplication implements Serializable {
     private String income;
     @Column(name = "amount_of_loan")
     private String loanAmount;
+    @Column(name = "application_status")
+    private String status;
+
+    public long getAid() {
+        return aid;
+    }
+
+    public void setAid(long aid) {
+        this.aid = aid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "application_customer",
