@@ -2,6 +2,7 @@ package com.example.ist412group4.controller;
 
 
 import com.example.ist412group4.model.Customer;
+import com.example.ist412group4.model.Loan;
 import com.example.ist412group4.model.LoanApplication;
 import com.example.ist412group4.service.LoanAppService;
 import com.example.ist412group4.service.CustomerService;
@@ -35,6 +36,8 @@ public class LoanApplicationController {
     public String saveLoanApplication(@ModelAttribute("application") LoanApplication loanApplication){
         if (loanAppService.validateApplication(loanApplication)) {
             loanAppService.saveLoanApplication(loanApplication);
+            //if employee type, return employee menu
+            //else return application confirmation with customer id
             return "loan_application/application_confirmation";
         } else {
             return "error_pages/application_error";
@@ -54,4 +57,12 @@ public class LoanApplicationController {
         this.loanAppService.deleteLoanApplicationById(id);
         return "redirect:/employeeMenu";
     }
+
+    @GetMapping("/showApplicationForReview/{id}")
+    public String showApplicationForReview(@PathVariable (value = "id") long id, Model model) {
+        LoanApplication loanApplication = loanAppService.getLoanApplicationById(id);
+        model.addAttribute("loanApplication", loanApplication);
+        return "loan_application/update_application";
+    }
+
 }

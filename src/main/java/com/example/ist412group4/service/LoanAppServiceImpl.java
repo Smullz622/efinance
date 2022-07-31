@@ -46,6 +46,9 @@ public class LoanAppServiceImpl implements LoanAppService{
         loanApplication.getBirthDay().isBlank() || loanApplication.getIncome().isBlank()) {
             return false;
         } else {
+            if (loanApplication.getStatus() == null) {
+                loanApplication.setStatus("Pending Initial Review");
+            }
             return true;
         }
     }

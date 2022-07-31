@@ -13,11 +13,20 @@
 <form action="#" th:action="@{/showNewApplicationForm/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
 
     <input type="hidden" th:field="*{id}" />
-    <button type="submit" class="btn btn-info col-2"> Show New Application </button>
+    <button type="submit" class="btn btn-info col-2"> Create New Application </button>
 
 </form>
-<a th:href = "@{/showReviewApplicationForm}" class="btn btn-primary btn-sm mb-3"> Review Application </a>
-<a th:href = "@{/showMakePaymentForm}" class="btn btn-primary btn-sm mb-3"> Make a Payment </a>
+<br>
+<form action="#" th:action= "@{/showReviewApplicationForm}" th:object="${customer}" method="GET">
+    <input type="hidden" th:field="*{id}" />
+    <button type="submit" class="btn btn-info col-2"> Review Application </button>
+</form>
+<br>
+<form action="#" th:action= "@{/showMakePaymentForm}" th:object="${customer}" method="GET">
+    <input type="hidden" th:field="*{id}" />
+    <button type="submit" class="btn btn-info col-2"> Make a Payment </button>
+</form>
+
 <br>
 <a th:href = "@{/logout}" class="btn btn-primary btn-sm mb-3"> Log out </a>
 </body>

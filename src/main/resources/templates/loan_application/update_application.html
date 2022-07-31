@@ -14,24 +14,60 @@
   <hr>
   <h2>Update Application</h2>
 
-  <form action="#" th:action="@{/saveLoan}" th:object="${Loan}" method="POST">
+  <form action="#" th:action="@{/saveLoanApplication}" th:object="${loanApplication}" method="POST">
 
     <!-- Add hidden form field to handle update -->
-    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{aid}">
+    <p>Name:</p>
+    <input type="text" th:field="*{name}"
+           placeholder="Full Name" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{custName}" class="form-control mb-4 col-4">
+    <input type="hidden" th:field="*{address}"
+           placeholder="Street Address, City, State, Zip" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{custEmail}" class="form-control mb-4 col-4">
+    <input type="hidden" th:field="*{phoneNo}"
+           placeholder="Phone Number" class="form-control mb-4 col-4">
 
-    <input type="text" th:field="*{loanAmount}" class="form-control mb-4 col-4">
-    <input type="text" th:field="*{income}" class="form-control mb-4 col-4">
-    <button type="submit" class="btn btn-info col-2"> Approve Application</button>
-    <button type="submit" class="btn btn-info col-2"> Deny Application</button>
+    <input type="hidden" th:field="*{social}"
+           placeholder="Social Security Number" class="form-control mb-4 col-4">
+
+    <input type="hidden" th:field="*{birthDay}"
+           placeholder="Birth Date (MM/DD/YYYY)" class="form-control mb-4 col-4">
+    <p>Gross Monthly Income:</p>
+    <input type="text" th:field="*{income}"
+           placeholder="Gross Monthly Income" class="form-control mb-4 col-4">
+    <p>Desired Loan Amount:</p>
+    <input type="text" th:field="*{loanAmount}"
+           placeholder="Loan Amount" class="form-control mb-4 col-4">
+    <div>
+      <p>Loan Type: </p>
+      <select th:field="*{loanType}">
+        <option th:value="'Personal'" th:text="Personal"></option>
+        <option th:value="'Business'" th:text="Business"></option>
+        <option th:value="'Auto'" th:text="Auto"></option>
+        <option th:value="'Renovation'" th:text="Renovation"></option>
+        <option th:value="'Project'" th:text="Project"></option>
+      </select>
+    </div>
+    <div>
+      <br>
+      <p> Loan Status: </p>
+      <select th:field="*{status}">
+        <option th:value="'Pending Initial Review'" th:text="Pending_Initial_Review"></option>
+        <option th:value="'Denied'" th:text="Denied"></option>
+        <option th:value="'Approved Pending Final Review'" th:text="Approved_Pending_Final_Review"></option>
+        <option th:value="'Accepted'" th:text="Accepted"></option>
+      </select>
+    </div>
+    <div>
+      <br>
+    <button type="submit" class="btn btn-info col-2"> Save </button>
+    </div>
   </form>
 
   <hr>
 
-  <a th:href="@{/}"> Back to Home</a>
+  <a th:href="@{/employeeMenu}"> Back to Home</a>
 </div>
 </body>
 </html>
