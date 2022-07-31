@@ -14,7 +14,7 @@
     <h2> Create Loan Application </h2>
     <form action="#" th:action="@{/saveLoanApplication}" th:object="${application}" method="POST">
 
-        <input type="text" th:field="*{name}"
+        <input type="hidden" th:field="*{name}"
                placeholder="Full Name" class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{address}"
@@ -33,7 +33,7 @@
                placeholder="Gross Monthly Income" class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{loanAmount}"
-               placeholder="Loan Amount" class="form-control mb-4 col-4">
+               placeholder="Loan Amount" class="form-control mb-4 col-4" content="$">
         <div>
         <p>Loan Type: </p>
         <select th:field="*{loanType}">
