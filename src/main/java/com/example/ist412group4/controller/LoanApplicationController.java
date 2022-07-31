@@ -42,4 +42,16 @@ public class LoanApplicationController {
 
     }
 
+    @GetMapping("/showApplications")
+    public String showApplications(Model model)
+    {
+        model.addAttribute("listLoanApps", loanAppService.getAllLoanApplications());
+        return "loan_application/list_of_loan_applications";
+    }
+
+    @GetMapping("/deleteLoanApp/{id}")
+    public String deleteLoanApp(@PathVariable (value = "id") long id) {
+        this.loanAppService.deleteLoanApplicationById(id);
+        return "redirect:/employeeMenu";
+    }
 }
