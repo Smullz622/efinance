@@ -23,14 +23,17 @@ refactor implementations:
 
 7) Add ‘Cancel’ button to Loan Application interface. 
 
-8) Add Log Out feature 
+8) Add Log Out feature (Sungjin)
+    There was no log out function on the application which can cause some security issues. Added log out feature in EmployeeController class.
+    Created Log out button on customer_menu.html and employee_menu.html files.
 
 9) Add Find Password feature (Sungjin/Sarah)
     Methods were added to the EmployeeController and CustomerController to allow users to recover their forgotten password. This also required the creation of 
     new templates used to allow users to input their email and be shown their password.
 
-10) Remove unnecessary getters and setters 
+10) Remove unnecessary getters and setters (Sungjin)
+    Deleted unused getters and setters which have the potential to increase the complexity of the application.
 
-11) Reformat to add line wrapping 
+12) Reformat to add line wrapping 
 
-12) Remove name section from the loan application and all related variables in application HMTL code 
+13) Remove name section from the loan application and all related variables in application HMTL code 

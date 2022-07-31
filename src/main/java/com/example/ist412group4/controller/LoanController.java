@@ -44,6 +44,6 @@ public class LoanController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listloans", listLoans);
-        return "index";
+        return "loan_application/list_of_loan_applications";
     }
 }
