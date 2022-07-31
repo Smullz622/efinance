@@ -15,13 +15,13 @@ refactor implementations:
     Some of our error templates were redundant. The customer_login_error and employee_login_error were condensed into account_not_found_error which can also
     be used for any errors in password retrieval.
  
-4) Remove LoginController, create EmployeeController and CustomerController 
+4) Remove LoginController, create EmployeeController and CustomerController (Kirstin)
 
-5) Add data validations to user input 
+5) Add data validations to user input (Ameli)
 
-6) Remove unused imports 
+6) Remove unused imports (Kirstin)
 
-7) Add ‘Cancel’ button to Loan Application interface. 
+7) Add ‘Cancel’ button to Loan Application interface. (Kirstin)
 
 8) Add Log Out feature (Sungjin)
     There was no log out function on the application which can cause some security issues. Added log out feature in EmployeeController class.
@@ -34,6 +34,6 @@ refactor implementations:
 10) Remove unnecessary getters and setters (Sungjin)
     Deleted unused getters and setters which have the potential to increase the complexity of the application.
 
-12) Reformat to add line wrapping 
+12) Reformat to add line wrapping (Ameli)
 
-13) Remove name section from the loan application and all related variables in application HMTL code 
+13) Remove name section from the loan application and all related variables in application HMTL code (Ameli)
