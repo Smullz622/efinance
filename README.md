@@ -16,12 +16,19 @@ refactor implementations:
     be used for any errors in password retrieval.
  
 4) Remove LoginController, create EmployeeController and CustomerController (Kirstin)
+    Our LoginController was overburdened by our customer and employee classes. The customer and employee classes correspond to different tables and need
+    their own controllers. We eliminated the LoginController, and created a new CustomerController and EmployeeController to allow for simpler maintenance
+    and to reduce the chance for errors as changes are made to the application.
+
 
 5) Add data validations to user input (Ameli)
 
 6) Remove unused imports (Kirstin)
+    Unused imports make messy code. We removed the unnecessary imports to clean up the code and avoid future errors.
 
 7) Add ‘Cancel’ button to Loan Application interface. (Kirstin)
+    Without the option to cancel an action, users are likely to abandon the application. We added a cancel button to the 'create a new loan application'
+    page so that users can cancel the action if they choose to do so.
 
 8) Add Log Out feature (Sungjin)
     There was no log out function on the application which can cause some security issues. Added log out feature in EmployeeController class.
