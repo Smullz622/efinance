@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>eFinance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+          crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -12,7 +14,7 @@
     <h2> Create Loan Application </h2>
     <form action="#" th:action="@{/saveLoanApplication}" th:object="${application}" method="POST">
 
-        <input type="text" th:field="*{name}"
+        <input type="hidden" th:field="*{name}"
                placeholder="Full Name" class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{address}"
@@ -31,7 +33,7 @@
                placeholder="Gross Monthly Income" class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{loanAmount}"
-               placeholder="Loan Amount" class="form-control mb-4 col-4">
+               placeholder="Loan Amount" class="form-control mb-4 col-4" content="$">
         <div>
         <p>Loan Type: </p>
         <select th:field="*{loanType}">

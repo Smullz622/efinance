@@ -20,7 +20,7 @@ refactor implementations:
     their own controllers. We eliminated the LoginController, and created a new CustomerController and EmployeeController to allow for simpler maintenance
     and to reduce the chance for errors as changes are made to the application.
 
-5) Add data validations to user input 
+5) Add data validations to user input (Ameli)
 
 6) Remove unused imports (Kirstin)
     Unused imports make messy code. We removed the unnecessary imports to clean up the code and avoid future errors.
