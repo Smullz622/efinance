@@ -1,0 +1,31 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	
++++ b/README.md	(date 1659654253833)
+@@ -21,6 +21,7 @@
+     and to reduce the chance for errors as changes are made to the application.
+ 
+ 5) Add data validations to user input (Ameli)
++    Loan amount entry required $ in new_loan_application.
+ 
+ 6) Remove unused imports (Kirstin)
+     Unused imports make messy code. We removed the unnecessary imports to clean up the code and avoid future errors.
+@@ -40,6 +41,14 @@
+ 10) Remove unnecessary getters and setters (Sungjin)
+     Deleted unused getters and setters which have the potential to increase the complexity of the application.
+ 
++<<<<<<< HEAD
+ 11) Reformat to add line wrapping 
+ 
+ 12) Remove name section from the loan application and all related variables in application HMTL code 
++=======
++11) Reformat to add line wrapping (Ameli)
++     Overextended lines were wrapped in all templates.
++
++12) Remove name section from the loan application and all related variables in application HMTL code (Ameli)
++     Name was removed from new_loan_application.
++>>>>>>> e12aac804e66911b9a3d261d9ea545e01d43bcac
