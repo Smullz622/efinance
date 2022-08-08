@@ -32,17 +32,27 @@ public class LoanApplicationController {
         return "loan_application/new_loan_application";
     }
 
-    @PostMapping("/saveLoanApplication")
-    public String saveLoanApplication(@ModelAttribute("application") LoanApplication loanApplication){
+    @PostMapping("/saveLoanApplication/{id}")
+    public String saveLoanApplication(@PathVariable(value = "id") long id, Model model,
+                                      @ModelAttribute("application") LoanApplication loanApplication){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", customer);
         if (loanAppService.validateApplication(loanApplication)) {
             loanAppService.saveLoanApplication(loanApplication);
-            //if employee type, return employee menu
-            //else return application confirmation with customer id
             return "loan_application/application_confirmation";
         } else {
             return "error_pages/application_error";
         }
+    }
 
+    @PostMapping("/updateLoanApplicationStatus")
+    public String updateLoanApplicationStatus(@ModelAttribute("application") LoanApplication loanApplication){
+        if (loanAppService.validateApplication(loanApplication)) {
+            loanAppService.saveLoanApplication(loanApplication);
+            return "loan_application/status_update_confirmation";
+        } else {
+            return "error_pages/status_update_error";
+        }
     }
 
     @GetMapping("/showApplications")

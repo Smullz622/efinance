@@ -12,19 +12,13 @@
 <div class="container">
     <h1> Application Confirmation </h1>
 
-    <p>Your application has been successfully submitted!</p>
-    <p>Check application status at "Review Applications" in your main menu</p>
+    <p>This application has been successfully updated!</p>
 
 </div>
-<div class="container my-2">
-    <form action="#" th:action="@{/customerMenu/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
-
-        <input type="hidden" th:field="*{id}" />
-        <button type="submit" class="btn btn-info col-2"> Back to Home </button>
-
-    </form>
-
-</div>
+<br>
+<a th:href = "@{/showApplications}" class="btn btn-primary btn-sm mb-3"> Back to Application List </a>
+<br>
+<a th:href = "@{/employeeMenu}" class="btn btn-primary btn-sm mb-3"> Back to Home </a>
 
 </body>
 

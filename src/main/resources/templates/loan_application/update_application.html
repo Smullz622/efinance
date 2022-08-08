@@ -14,7 +14,7 @@
   <hr>
   <h2>Update Application</h2>
 
-  <form action="#" th:action="@{/saveLoanApplication}" th:object="${loanApplication}" method="POST">
+  <form action="#" th:action="@{/updateLoanApplicationStatus}" th:object="${loanApplication}" method="POST">
 
     <!-- Add hidden form field to handle update -->
     <input type="hidden" th:field="*{aid}">
