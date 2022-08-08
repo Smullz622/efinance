@@ -23,6 +23,10 @@
 
     <form action="#" th:action="@{/saveLoanApplication/{id}(id=${customer.id})}" th:object="${application}" method="POST">
 
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{interest}">
+        <input type="hidden" th:field="*{term}">
+
         <input type="text" th:field="*{name}"
                placeholder="Full Name" class="form-control mb-4 col-4">
 

@@ -1,6 +1,7 @@
 package com.example.ist412group4.model;
 
 import javax.persistence.*;
+import javax.websocket.ClientEndpoint;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,10 @@ public class LoanApplication implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long aid;
+
+    @Column(name = "id")
+    private long id;
+
     @Column(name = "applicant_name")
     private String name;
     @Column(name = "address")
@@ -30,6 +35,12 @@ public class LoanApplication implements Serializable {
     private String loanAmount;
     @Column(name = "application_status")
     private String status;
+
+    @Column(name = "interest")
+    private Double interest;
+
+    @Column(name = "term")
+    private String term;
 
     public long getAid() {
         return aid;
@@ -129,6 +140,31 @@ public class LoanApplication implements Serializable {
     public void setLoanAmount(String loanAmount) {
         this.loanAmount = loanAmount;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
 
 }
 

@@ -38,6 +38,9 @@ public class LoanApplicationController {
         Customer customer = customerService.getCustomerById(id);
         model.addAttribute("customer", customer);
         if (loanAppService.validateApplication(loanApplication)) {
+            loanApplication.setId(customer.getId());
+            if (loanApplication.getInterest()==null) {loanApplication.setInterest(0.0);}
+            if (loanApplication.getTerm()==null){loanApplication.setTerm("none");}
             loanAppService.saveLoanApplication(loanApplication);
             return "loan_application/application_confirmation";
         } else {
@@ -65,7 +68,7 @@ public class LoanApplicationController {
     @GetMapping("/deleteLoanApp/{id}")
     public String deleteLoanApp(@PathVariable (value = "id") long id) {
         this.loanAppService.deleteLoanApplicationById(id);
-        return "redirect:/employeeMenu";
+        return "redirect:/showApplications";
     }
 
     @GetMapping("/showApplicationForReview/{id}")

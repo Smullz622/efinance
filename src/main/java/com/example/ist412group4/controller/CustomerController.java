@@ -2,7 +2,9 @@ package com.example.ist412group4.controller;
 
 
 import com.example.ist412group4.model.Customer;
+import com.example.ist412group4.model.LoanApplication;
 import com.example.ist412group4.service.CustomerService;
+import com.example.ist412group4.service.LoanAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +13,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class CustomerController {
 
     @Autowired
     CustomerService customerService;
+    @Autowired
+    LoanAppService loanAppService;
 
     @GetMapping("/showCustomerLogin")
     public String viewCustomerLogin(Model model) {
@@ -77,6 +84,25 @@ public class CustomerController {
         Customer customer = customerService.getCustomerById(id);
         model.addAttribute("customer", customer);
         return "customer/show_password";
+    }
+
+    @GetMapping("/showCustomerLoans/{id}")
+    public String showCustomerLoans(@PathVariable (value = "id") long id, Model model){
+        List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
+        List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
+        for (LoanApplication loan : allLoans){
+            if (loan.getId()==id){ loanAppList.add(loan);}
+        }
+        model.addAttribute("loanAppList", loanAppList);
+    /*    List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
+        List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
+        for (LoanApplication loan : allLoans){
+            if (loan.getId()==id){ loanAppList.add(loan);}
+        }
+        model.addAttribute("loanList", loanList);
+
+     */
+        return "customer/showLoans";
     }
 
 }
