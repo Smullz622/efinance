@@ -18,7 +18,7 @@
 
 </form>
 <br>
-<form action="#" th:action= "@{/showReviewApplicationForm}" th:object="${customer}" method="GET">
+<form action="#" th:action= "@{/showCustomerLoans/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
     <input type="hidden" th:field="*{id}" />
     <button type="submit" class="btn btn-info col-2"> Review Application </button>
 </form>

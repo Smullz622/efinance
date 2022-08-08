@@ -30,10 +30,10 @@
         </thead>
         <tbody>
         <tr th:each="loanApp : ${loanAppList}">
-            <td th:text="${loanApp.name}"></td>
+            <td th:text="${loanApp.loanType}"></td>
             <td th:text="${loanApp.loanAmount}"></td>
             <td th:text="${loanApp.status}"></td>
-            <td> <a th:href="@{/showApplicationForReview/{id}/{aid}(aid=${loanApp.aid})}" class="btn btn-primary">Review</a>
+            <td> <a th:href="@{/showTermsReview/{id}/{aid}(aid=${loanApp.aid})}" class="btn btn-primary">Review Terms</a>
                 <a th:href="@{/deleteLoanApp/{aid}(aid=${loanApp.aid})}" class="btn btn-danger">Delete</a>
 
             </td>

@@ -88,12 +88,14 @@ public class CustomerController {
 
     @GetMapping("/showCustomerLoans/{id}")
     public String showCustomerLoans(@PathVariable (value = "id") long id, Model model){
+        Customer customer = customerService.getCustomerById(id);
         List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
         List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
         for (LoanApplication loan : allLoans){
             if (loan.getId()==id){ loanAppList.add(loan);}
         }
         model.addAttribute("loanAppList", loanAppList);
+        model.addAttribute("customer", customer);
     /*    List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
         List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
         for (LoanApplication loan : allLoans){
@@ -102,7 +104,7 @@ public class CustomerController {
         model.addAttribute("loanList", loanList);
 
      */
-        return "customer/showLoans";
+        return "customer/show_loans";
     }
 
 }
