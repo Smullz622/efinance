@@ -39,6 +39,7 @@ public class LoanApplicationController {
         model.addAttribute("customer", customer);
         if (loanAppService.validateApplication(loanApplication)) {
             loanApplication.setId(customer.getId());
+            loanApplication.setPayment();
             if (loanApplication.getInterest()==null) {loanApplication.setInterest(0.0);}
             if (loanApplication.getTerm()==null){loanApplication.setTerm("none");}
             loanAppService.saveLoanApplication(loanApplication);
@@ -51,6 +52,7 @@ public class LoanApplicationController {
     @PostMapping("/updateLoanApplicationStatus")
     public String updateLoanApplicationStatus(@ModelAttribute("application") LoanApplication loanApplication){
         if (loanAppService.validateApplication(loanApplication)) {
+            loanApplication.setPayment();
             loanAppService.saveLoanApplication(loanApplication);
             return "loan_application/status_update_confirmation";
         } else {

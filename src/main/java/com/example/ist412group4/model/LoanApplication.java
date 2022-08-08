@@ -5,6 +5,8 @@ import javax.websocket.ClientEndpoint;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "application")
@@ -41,6 +43,9 @@ public class LoanApplication implements Serializable {
 
     @Column(name = "term")
     private String term;
+
+    @Column(name = "payment")
+    private Double payment;
 
     public long getAid() {
         return aid;
@@ -165,7 +170,32 @@ public class LoanApplication implements Serializable {
         this.term = term;
     }
 
+    public int termToInt() {
+        if (this.term.equals("five")){
+            return 5;
+        } else if (this.term.equals("ten")) {
+            return 10;
+        } else if (this.term.equals("fifteen")) {
+            return 15;
+        } else {
+            return 20;
+        }
+    }
+    public void setPayment(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        Double a = Double.valueOf(this.loanAmount);
+        Double i = Double.valueOf(this.interest)/100;
+        Double r = i/12;
+        int t = termToInt();
+        int n = t*12;
+        Double p = 1 + r;
+        Double calc = a*((r*(Math.pow(p, n)))/(Math.pow(p, n)-1));
+        this.payment = Double.valueOf(df.format(calc));
+    }
 
+    public Double getPayment() {
+        return payment;
+    }
 }
 
 

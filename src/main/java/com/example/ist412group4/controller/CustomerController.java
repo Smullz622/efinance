@@ -2,9 +2,11 @@ package com.example.ist412group4.controller;
 
 
 import com.example.ist412group4.model.Customer;
+import com.example.ist412group4.model.Loan;
 import com.example.ist412group4.model.LoanApplication;
 import com.example.ist412group4.service.CustomerService;
 import com.example.ist412group4.service.LoanAppService;
+import com.example.ist412group4.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class CustomerController {
     CustomerService customerService;
     @Autowired
     LoanAppService loanAppService;
+
+    @Autowired
+    LoanService loanService;
 
     @GetMapping("/showCustomerLogin")
     public String viewCustomerLogin(Model model) {
@@ -105,6 +110,49 @@ public class CustomerController {
 
      */
         return "customer/show_loans";
+    }
+
+    @GetMapping("/showTermsReview/{aid}")
+    public String showTermReview(@PathVariable (value = "aid") long aid, Model model) {
+        LoanApplication loanApplication = loanAppService.getLoanApplicationById(aid);
+        Customer customer = customerService.getCustomerById(loanApplication.getId());
+        model.addAttribute("customer", customer);
+        model.addAttribute("loanApplication", loanApplication);
+        return "customer/term_review";
+    }
+
+    @PostMapping("/termDecision/{aid}")
+    public String termDecision(@PathVariable (value = "aid") long aid, Model model,
+                               @ModelAttribute("application") LoanApplication loanApplication){
+        Customer customer = customerService.getCustomerById(loanApplication.getId());
+        model.addAttribute("customer", customer);
+        System.out.println(("Check one " + loanApplication.getPayment()));
+        if (loanAppService.validateApplication(loanApplication)) {
+            loanApplication.setPayment();
+            loanAppService.saveLoanApplication(loanApplication);
+            System.out.println(("Check two " + loanApplication.getPayment()));
+            if (loanApplication.getStatus().equals("Accepted")){
+                System.out.println(("Check three " + loanApplication.getPayment()));
+                Loan loan = new Loan();
+                loan.setLoanType(loanApplication.getLoanType());
+                loan.setTotalValue(loanApplication.getLoanAmount());
+                loan.setBalance(loanApplication.getLoanAmount());
+                loan.setTerm(loanApplication.getTerm());
+                loan.setStatus("In Repayment");
+                loan.setInterest(loanApplication.getInterest());
+                loan.setPayment(loanApplication.getPayment());
+                loan.setCid(loanApplication.getId());
+                loanService.saveLoan(loan);
+                System.out.println(("Check four " + loanApplication.getPayment()));
+            }
+            return "redirect:/showCustomerLoans/" + String.valueOf(customer.getId());
+        }
+        else {
+            return "error_pages/application_error";
+        }
+
+        //if accepted, create new loan object from application details
+        //if rejected, delete
     }
 
 }

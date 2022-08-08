@@ -15,6 +15,8 @@ public class Loan implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long loanId;
 
+    @Column(name = "cid")
+    private long cid;
     @Column(name = "loan_type")
     private String loanType;
     @Column(name = "total_value")
@@ -22,16 +24,19 @@ public class Loan implements Serializable {
     @Column(name = "balance")
     private String balance;
     @Column(name = "monthly_payment")
-    private String payment;
+    private Double payment;
     @Column(name = "term")
     private String term;
     @Column(name = "status")
     private String status;
 
+    @Column(name = "interest")
+    private Double interest;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "loan_customer",
             joinColumns = {@JoinColumn(name = "loanId")},
-            inverseJoinColumns = {@JoinColumn(name = "id")})
+            inverseJoinColumns = {@JoinColumn(name = "cid")})
 
     public Set<Customer> customers = new HashSet<>();
 
@@ -71,13 +76,11 @@ public class Loan implements Serializable {
         this.balance = balance;
     }
 
-    public String getPayment() {
+    public Double getPayment() {
         return payment;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
+    public void setPayment(Double payment) { this.payment = payment;}
 
     public String getTerm() {
         return term;
@@ -87,6 +90,7 @@ public class Loan implements Serializable {
         this.term = term;
     }
 
+
     public String getStatus() {
         return status;
     }
@@ -95,8 +99,19 @@ public class Loan implements Serializable {
         this.status = status;
     }
 
+    public Double getInterest() {
+        return interest;
+    }
 
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
 
+    public long getCid() {
+        return cid;
+    }
 
-
+    public void setCid(long cid) {
+        this.cid = cid;
+    }
 }

@@ -42,7 +42,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public boolean validateLoan(Loan loan) {
         if (loan.getLoanType().isBlank() || loan.getTotalValue().isBlank() || (loan.getBalance().isBlank())
-                || loan.getPayment().isBlank() || loan.getTerm().isBlank()) {
+                || loan.getPayment()==null || loan.getTerm().isBlank()) {
             return false;
         } else {
             return true;
