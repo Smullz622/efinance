@@ -25,6 +25,11 @@ public class LoanController {
         return "redirect:/";
     }
 
+    @GetMapping("/showPaymentDetail/{id}")
+    public String showPaymentDetail(@PathVariable(value = "loanId") long loanId){
+        return "loan/new_payment";
+    }
+
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,

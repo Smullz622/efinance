@@ -94,21 +94,23 @@ public class CustomerController {
     @GetMapping("/showCustomerLoans/{id}")
     public String showCustomerLoans(@PathVariable (value = "id") long id, Model model){
         Customer customer = customerService.getCustomerById(id);
-        List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
+        List<LoanApplication> allLoanApps = loanAppService.getAllLoanApplications();
         List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
-        for (LoanApplication loan : allLoans){
-            if (loan.getId()==id){ loanAppList.add(loan);}
+        for (LoanApplication loanApp : allLoanApps){
+            if (loanApp.getId()==id){ loanAppList.add(loanApp);}
+            //expand if to check if loan already exists (check loan app status, if accepted)
         }
         model.addAttribute("loanAppList", loanAppList);
         model.addAttribute("customer", customer);
-    /*    List<LoanApplication> allLoans = loanAppService.getAllLoanApplications();
-        List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
-        for (LoanApplication loan : allLoans){
-            if (loan.getId()==id){ loanAppList.add(loan);}
+
+        List<Loan> allLoans = loanService.getAllLoans();
+        List<Loan> loanList = new ArrayList<Loan>();
+        for (Loan loan : allLoans){
+            if (loan.getCid()==id){ loanList.add(loan);}
         }
         model.addAttribute("loanList", loanList);
 
-     */
+
         return "customer/show_loans";
     }
 
@@ -150,9 +152,6 @@ public class CustomerController {
         else {
             return "error_pages/application_error";
         }
-
-        //if accepted, create new loan object from application details
-        //if rejected, delete
     }
 
 }
