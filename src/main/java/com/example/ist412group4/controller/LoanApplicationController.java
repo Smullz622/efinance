@@ -32,17 +32,32 @@ public class LoanApplicationController {
         return "loan_application/new_loan_application";
     }
 
-    @PostMapping("/saveLoanApplication")
-    public String saveLoanApplication(@ModelAttribute("application") LoanApplication loanApplication){
+    @PostMapping("/saveLoanApplication/{id}")
+    public String saveLoanApplication(@PathVariable(value = "id") long id, Model model,
+                                      @ModelAttribute("application") LoanApplication loanApplication){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", customer);
         if (loanAppService.validateApplication(loanApplication)) {
+            loanApplication.setId(customer.getId());
+            if (loanApplication.getInterest()==null) {loanApplication.setInterest(0.0);}
+            if (loanApplication.getTerm()==null){loanApplication.setTerm("none");}
+            loanApplication.setPayment(0.0);
             loanAppService.saveLoanApplication(loanApplication);
-            //if employee type, return employee menu
-            //else return application confirmation with customer id
             return "loan_application/application_confirmation";
         } else {
             return "error_pages/application_error";
         }
+    }
 
+    @PostMapping("/updateLoanApplicationStatus")
+    public String updateLoanApplicationStatus(@ModelAttribute("application") LoanApplication loanApplication){
+        if (loanAppService.validateApplication(loanApplication)) {
+            loanApplication.setPayment();
+            loanAppService.saveLoanApplication(loanApplication);
+            return "loan_application/status_update_confirmation";
+        } else {
+            return "error_pages/status_update_error";
+        }
     }
 
     @GetMapping("/showApplications")
@@ -54,8 +69,9 @@ public class LoanApplicationController {
 
     @GetMapping("/deleteLoanApp/{id}")
     public String deleteLoanApp(@PathVariable (value = "id") long id) {
+        Customer customer = customerService.getCustomerById(loanAppService.getLoanApplicationById(id).getId());
         this.loanAppService.deleteLoanApplicationById(id);
-        return "redirect:/employeeMenu";
+        return "redirect:/showCustomerLoans/" + String.valueOf(customer.getId());
     }
 
     @GetMapping("/showApplicationForReview/{id}")

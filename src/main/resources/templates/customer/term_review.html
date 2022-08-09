@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Application Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>eFinance</h1>
+    <hr>
+    <div class="container my-2">
+        <form action="#" th:action="@{/customerMenu/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
+
+            <input type="hidden" th:field="*{id}" />
+            <button type="submit" class="btn btn-info col-2"> Back to Home </button>
+
+        </form>
+    </div>
+    <h2>Review Loan Terms</h2>
+
+
+    <form action="#" th:action="@{/termDecision/{aid}(aid=${loanApplication.aid})}" th:object="${loanApplication}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{aid}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{name}">
+        <input type="hidden" th:field="*{address}">
+        <input type="hidden" th:field="*{phoneNo}">
+        <input type="hidden" th:field="*{social}">
+        <input type="hidden" th:field="*{birthDay}">
+        <input type="hidden" th:field="*{income}">
+        <div>
+            <p>Loan Type: </p>
+            <select th:field="*{loanType}">
+                <option th:value="'Personal'" th:text="Personal"></option>
+                <option th:value="'Business'" th:text="Business"></option>
+                <option th:value="'Auto'" th:text="Auto"></option>
+                <option th:value="'Renovation'" th:text="Renovation"></option>
+                <option th:value="'Project'" th:text="Project"></option>
+            </select>
+        </div>
+        <div>
+            <p>Desired Loan Amount:</p>
+            <input type="text" th:field="*{loanAmount}"
+                   placeholder="Loan Amount" class="form-control mb-4 col-4">
+            <p>Interest Rate:</p>
+            <input type="text" th:field="*{interest}"
+                   placeholder="Interest Rate" class="form-control mb-4 col-4">
+            <p>Monthly Payment:</p>
+            <input type="text" th:field="*{payment}"
+                   placeholder="Monthly Payment" class="form-control mb-4 col-4">
+            <p>Loan Term (years): </p>
+            <select th:field="*{term}">
+                <option th:value="'five'" th:text="five"></option>
+                <option th:value="'ten'" th:text="ten"></option>
+                <option th:value="'fifteen'" th:text="fifteen"></option>
+                <option th:value="'twenty'" th:text="twenty"></option>
+            </select>
+        </div>
+
+        <div>
+            <br>
+            <h4>If you would like to accept the terms of this loan, please select "Accepted". </h4>
+            <h4>Otherwise, select "Denied" to reject terms and delete application.</h4>
+            <select th:field="*{status}">
+                <option th:value="'Pending Initial Review'" th:text="Pending_Initial_Review"></option>
+                <option th:value="'Denied'" th:text="Denied"></option>
+                <option th:value="'Approved Pending Final Review'" th:text="Approved_Pending_Final_Review"></option>
+                <option th:value="'Accepted'" th:text="Accepted"></option>
+            </select>
+        </div>
+        <div>
+            <br>
+            <button type="submit" class="btn btn-info col-2"> Save </button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

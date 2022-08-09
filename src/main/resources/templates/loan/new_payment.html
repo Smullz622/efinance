@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>eFinance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>eFinance </h1>
+    <h2> Make a Payment </h2>
+    <form action="#" th:action="@{/savePayment}" th:object="${loan}" method="POST">
+
+        <input type="hidden" th:field="*{loanId}">
+        <input type="hidden" th:field="*{cid}">
+        <input type="hidden" th:field="*{loanId}">
+        <input type="hidden" th:field="*{totalValue}">
+        <input type="hidden" th:field="*{balance}">
+        <input type="hidden" th:field="*{term}">
+        <input type="hidden" th:field="*{status}">
+        <input type="hidden" th:field="*{interest}">
+        <input type="hidden" th:field="*{payment}">
+        <input type="hidden" th:field="*{loanType}">
+
+        <p>Payment Amount: </p>
+        <input type="text" th:field="*{currentPayment}"
+               placeholder="Payment Amount" class="form-control mb-4 col-4">
+        <p>Credit Card Number</p>
+        <input type="text"
+               placeholder="Credit Card Number" class="form-control mb-4 col-4">
+
+        <input type="text"
+               placeholder="Credit Card Expiration Date (MM/DD/YYYY)" class="form-control mb-4 col-4">
+
+        <input type="text"
+               placeholder="Credit Card Security Code" class="form-control mb-4 col-4">
+
+        <input type="text"
+               placeholder="Street Address, City, State, Zip Code" class="form-control mb-4 col-4">
+
+        <div>
+            <br>
+            <button type="submit" class="btn btn-info col-2"> Submit Payment </button>
+        </div>
+    </form>
+</div>
+</div>
+<div class="container my-2">
+    <form action="#" th:action="@{/customerMenu/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
+
+        <input type="hidden" th:field="*{id}" />
+        <button type="submit" class="btn btn-info col-2"> Cancel </button>
+
+    </form>
+
+</div>
+</body>
+</html>
