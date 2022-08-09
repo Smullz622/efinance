@@ -1,9 +1,13 @@
 package com.example.ist412group4.model;
 
 import javax.persistence.*;
+import javax.websocket.ClientEndpoint;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "application")
@@ -12,6 +16,10 @@ public class LoanApplication implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long aid;
+
+    @Column(name = "id")
+    private long id;
+
     @Column(name = "applicant_name")
     private String name;
     @Column(name = "address")
@@ -30,6 +38,15 @@ public class LoanApplication implements Serializable {
     private String loanAmount;
     @Column(name = "application_status")
     private String status;
+
+    @Column(name = "interest")
+    private Double interest;
+
+    @Column(name = "term")
+    private String term;
+
+    @Column(name = "payment")
+    private Double payment;
 
     public long getAid() {
         return aid;
@@ -130,6 +147,66 @@ public class LoanApplication implements Serializable {
         this.loanAmount = loanAmount;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public int termToInt() {
+        if (this.term.equals("five")){
+            return 5;
+        } else if (this.term.equals("ten")) {
+            return 10;
+        } else if (this.term.equals("fifteen")) {
+            return 15;
+        } else {
+            return 20;
+        }
+    }
+    public void setPayment(Double defaultPayment){
+        this.payment = defaultPayment;
+    }
+    public void setPayment(){
+        Double a = Double.valueOf(this.loanAmount);
+        System.out.println("a::" + a + a.isNaN());
+        Double i = this.interest/100;
+        System.out.println("i::" + i + i.isNaN());
+        Double r = i/12;
+        System.out.println("r::" + r + r.isNaN());
+        int t = termToInt();
+        System.out.println("t::" + t);
+        int n = t*12;
+        System.out.println("n::" + n);
+        Double p = 1 + r;
+        System.out.println("p::" + p + p.isNaN());
+        Double calc = a*((r*(Math.pow(p, n)))/(Math.pow(p, n)-1));
+        System.out.println("calc::" + calc + calc.isNaN());
+        BigDecimal bigDecimal = new BigDecimal(calc).setScale(2, RoundingMode.HALF_UP);
+        this.payment = bigDecimal.doubleValue();
+    }
+
+    public Double getPayment() {
+        return payment;
+    }
 }
 
 

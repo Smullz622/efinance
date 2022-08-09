@@ -18,6 +18,7 @@
 
     <!-- Add hidden form field to handle update -->
     <input type="hidden" th:field="*{aid}">
+    <input type="hidden" th:field="*{id}">
     <p>Name:</p>
     <input type="text" th:field="*{name}"
            placeholder="Full Name" class="form-control mb-4 col-4">
@@ -57,6 +58,19 @@
         <option th:value="'Denied'" th:text="Denied"></option>
         <option th:value="'Approved Pending Final Review'" th:text="Approved_Pending_Final_Review"></option>
         <option th:value="'Accepted'" th:text="Accepted"></option>
+      </select>
+    </div>
+    <div>
+      <p>If Approved, set terms below: </p>
+      <p>Interest Rate:</p>
+      <input type="text" th:field="*{interest}"
+             placeholder="Interest Rate" class="form-control mb-4 col-4">
+      <p>Loan Term (years): </p>
+      <select th:field="*{term}">
+        <option th:value="'five'" th:text="five"></option>
+        <option th:value="'ten'" th:text="ten"></option>
+        <option th:value="'fifteen'" th:text="fifteen"></option>
+        <option th:value="'twenty'" th:text="twenty"></option>
       </select>
     </div>
     <div>
