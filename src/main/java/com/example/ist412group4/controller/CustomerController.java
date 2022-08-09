@@ -97,8 +97,7 @@ public class CustomerController {
         List<LoanApplication> allLoanApps = loanAppService.getAllLoanApplications();
         List<LoanApplication> loanAppList = new ArrayList<LoanApplication>();
         for (LoanApplication loanApp : allLoanApps){
-            if (loanApp.getId()==id){ loanAppList.add(loanApp);}
-            //expand if to check if loan already exists (check loan app status, if accepted)
+            if (loanApp.getId()==id && !loanApp.getStatus().equals("Accepted")){ loanAppList.add(loanApp);}
         }
         model.addAttribute("loanAppList", loanAppList);
         model.addAttribute("customer", customer);
@@ -138,12 +137,13 @@ public class CustomerController {
                 Loan loan = new Loan();
                 loan.setLoanType(loanApplication.getLoanType());
                 loan.setTotalValue(loanApplication.getLoanAmount());
-                loan.setBalance(loanApplication.getLoanAmount());
+                loan.setBalance(Double.valueOf(loanApplication.getLoanAmount()));
                 loan.setTerm(loanApplication.getTerm());
                 loan.setStatus("In Repayment");
                 loan.setInterest(loanApplication.getInterest());
                 loan.setPayment(loanApplication.getPayment());
                 loan.setCid(loanApplication.getId());
+                loan.setCurrentPayment(0.0);
                 loanService.saveLoan(loan);
                 System.out.println(("Check four " + loanApplication.getPayment()));
             }

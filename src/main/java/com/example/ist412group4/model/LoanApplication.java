@@ -3,6 +3,7 @@ package com.example.ist412group4.model;
 import javax.persistence.*;
 import javax.websocket.ClientEndpoint;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.math.RoundingMode;
@@ -181,16 +182,26 @@ public class LoanApplication implements Serializable {
             return 20;
         }
     }
+    public void setPayment(Double defaultPayment){
+        this.payment = defaultPayment;
+    }
     public void setPayment(){
-        DecimalFormat df = new DecimalFormat("0.00");
         Double a = Double.valueOf(this.loanAmount);
-        Double i = Double.valueOf(this.interest)/100;
+        System.out.println("a::" + a + a.isNaN());
+        Double i = this.interest/100;
+        System.out.println("i::" + i + i.isNaN());
         Double r = i/12;
+        System.out.println("r::" + r + r.isNaN());
         int t = termToInt();
+        System.out.println("t::" + t);
         int n = t*12;
+        System.out.println("n::" + n);
         Double p = 1 + r;
+        System.out.println("p::" + p + p.isNaN());
         Double calc = a*((r*(Math.pow(p, n)))/(Math.pow(p, n)-1));
-        this.payment = Double.valueOf(df.format(calc));
+        System.out.println("calc::" + calc + calc.isNaN());
+        BigDecimal bigDecimal = new BigDecimal(calc).setScale(2, RoundingMode.HALF_UP);
+        this.payment = bigDecimal.doubleValue();
     }
 
     public Double getPayment() {

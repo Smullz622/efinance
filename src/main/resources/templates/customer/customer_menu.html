@@ -20,13 +20,9 @@
 <br>
 <form action="#" th:action= "@{/showCustomerLoans/{id}(id=${customer.id})}" th:object="${customer}" method="GET">
     <input type="hidden" th:field="*{id}" />
-    <button type="submit" class="btn btn-info col-2"> Review Application </button>
+    <button type="submit" class="btn btn-info col-2"> Review Loans </button>
 </form>
-<br>
-<form action="#" th:action= "@{/showMakePaymentForm}" th:object="${customer}" method="GET">
-    <input type="hidden" th:field="*{id}" />
-    <button type="submit" class="btn btn-info col-2"> Make a Payment </button>
-</form>
+
 
 <br>
 <a th:href = "@{/logout}" class="btn btn-primary btn-sm mb-3"> Log out </a>

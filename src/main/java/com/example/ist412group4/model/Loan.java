@@ -22,7 +22,7 @@ public class Loan implements Serializable {
     @Column(name = "total_value")
     private String totalValue;
     @Column(name = "balance")
-    private String balance;
+    private Double balance;
     @Column(name = "monthly_payment")
     private Double payment;
     @Column(name = "term")
@@ -33,6 +33,9 @@ public class Loan implements Serializable {
     @Column(name = "interest")
     private Double interest;
 
+    @Column(name = "currentPayment")
+    private Double currentPayment;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "loan_customer",
             joinColumns = {@JoinColumn(name = "loanId")},
@@ -42,6 +45,14 @@ public class Loan implements Serializable {
 
     public Set<Customer> getCustomers() {
         return customers;
+    }
+
+    public Double getCurrentPayment() {
+        return currentPayment;
+    }
+
+    public void setCurrentPayment(Double currentPayment) {
+        this.currentPayment = currentPayment;
     }
 
     public long getLoanId() {
@@ -68,11 +79,11 @@ public class Loan implements Serializable {
         this.totalValue = totalValue;
     }
 
-    public String getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
