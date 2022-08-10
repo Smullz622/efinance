@@ -43,10 +43,15 @@ public class LoanController {
             loanService.saveLoan(loan);
             return "redirect:/showCustomerLoans/" + loan.getCid();
         } else {
-            return "error_pages/invalid_payment";
+            return "redirect:/invalidPayment/" + loan.getCid();
         }
-        //if payment greater than min payment, run payment method to subtract payment amount from balance
-        //if not, throw to error page which will later return them to the show loans page
+    }
+
+    @GetMapping("/invalidPayment/{id}")
+    public String invalidPayment(@PathVariable (value = "id") long id, Model model){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", customer);
+        return "error_pages/invalid_payment";
     }
     @GetMapping("/deleteLoan/{loanId}")
     public String deleteLoanApp(@PathVariable (value = "loanId") long loanId) {
